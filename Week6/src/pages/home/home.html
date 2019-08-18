@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{title}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding [class.newBG]="state">
+
+  <ion-card>
+    <img src="../../assets/imgs/house.jpg" />
+    <ion-card-header>
+      <ion-card-subtitle>HomeNotes</ion-card-subtitle>
+      <ion-card-title>Your Home Listings</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      Below is a list of houses you have created. Please add information, notes or pictures as you visit the houses! Welcome home!
+    </ion-card-content>
+  </ion-card>
+  <h3 class="no-item" text-center *ngIf="items.length === 0">
+    You have not added any houses!
+  </h3>
+  <ion-list>
+    <ion-item-sliding  *ngFor="let item of items; let i = index">
+      <ion-item>
+        <h2>{{item.name}}</h2>
+        <p>{{item.street}}</p>
+        <p>{{item.city}}</p>
+        <p>{{item.state}}</p>
+        <p>{{item.notes}}</p>
+      </ion-item>
+      <ion-item-options>        
+        <button (click)="editItem(item, i)" ion-button color="primary" icon-start>
+            <ion-icon name="create"></ion-icon>
+            Edit
+        </button>
+        <button (click)="shareItem(item, i)" ion-button color="light" icon-start>
+          <ion-icon name="share"></ion-icon>
+          Share
+        </button>
+        <button (click)="removeItem(item, i)" ion-button color="secondary" icon-start>
+          <ion-icon name="trash"></ion-icon>
+          Delete
+        </button>
+        <!--Not sure where this fits
+        <button ion-button outline (click)="screenShotURI()">Screenshot (URI)</button>
+
+        <img src="{{ screen }}" *ngIf="state">
+
+        <span>
+        <img *ngIf="userScreenshot" [src]="userScreenshot" alt="">
+        </span>
+        <button ion-button outline (click)="saveScreenshotGetURI()">Screenshot (URI)</button>
+        end this-->
+
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+  
+
+
+  <ion-fab bottom right>
+    <button (click)="addItem()" ion-fab mini color="light"> 
+      <ion-icon name="add"></ion-icon>
+      </button>
+  </ion-fab>
+ 
+</ion-content>
